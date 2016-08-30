@@ -25,6 +25,8 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

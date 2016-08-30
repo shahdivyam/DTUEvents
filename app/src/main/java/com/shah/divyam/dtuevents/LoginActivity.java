@@ -3,6 +3,7 @@ package com.shah.divyam.dtuevents;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    private static int isValid = 1;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -103,6 +105,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        assert mEmailSignInButton != null;
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +118,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void populateAutoComplete() {
+    }
+
+    private void populateAutoComemail_sign_in_buttonplete() {
         if (!mayRequestContacts()) {
             return;
         }
@@ -163,8 +169,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+    public  void startMainActivity(){
+        Intent i = new Intent(this,MainActivity.class);
+        String email = mEmailView.getText().toString();
+        //i.putExtra("email",email);
+        startActivity(i);
+    }
     private void attemptLogin() {
+
         if (mAuthTask != null) {
+
             return;
         }
 
@@ -208,6 +222,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
+        startMainActivity();
+
     }
 
     private boolean isEmailValid(String email) {
