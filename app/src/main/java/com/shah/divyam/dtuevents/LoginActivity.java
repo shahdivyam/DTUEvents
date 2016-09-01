@@ -67,6 +67,8 @@ public class LoginActivity extends AppCompatActivity  {
     private View mProgressView;
     private View mLoginFormView;
 
+    private Button btRegister;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,9 +84,6 @@ public class LoginActivity extends AppCompatActivity  {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
-
-
         setContentView(R.layout.activity_login);
 
         //hide action bar
@@ -93,6 +92,16 @@ public class LoginActivity extends AppCompatActivity  {
             actionBar.hide();
         }
 
+        // Linking register activity through register button
+
+        btRegister = (Button) findViewById(R.id.bt_email_register_button);
+
+        btRegister.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startRegisterActivity();
+            }
+        });
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -164,6 +173,11 @@ public class LoginActivity extends AppCompatActivity  {
     public  void startMainActivity(){
         Intent i = new Intent(this,MainActivity.class);
         String email = mEmailView.getText().toString();
+        //i.putExtra("email",email);
+        startActivity(i);
+    }
+    public void startRegisterActivity(){
+        Intent i = new Intent(this,RegisterActivity.class);
         //i.putExtra("email",email);
         startActivity(i);
     }
