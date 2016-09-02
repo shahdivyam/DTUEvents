@@ -10,8 +10,8 @@
     android:paddingTop="0dp"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.shah.divyam.dtuevents.test"
-    tools:showIn="@layout/activity_register">
+    tools:context="com.shah.divyam.dtuevents.RegisterActivity"
+   >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -33,13 +33,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/gplus"
+            android:src="@drawable/ic_menu_camera"
             android:layout_gravity="left"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/fb"
+            android:src="@drawable/ic_menu_camera"
             android:layout_gravity="right"/>
 
 
