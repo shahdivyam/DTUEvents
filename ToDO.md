@@ -1,3 +1,5 @@
+0.)first now we have to set up back end because that is the main part of the project
+
 1. Design layout of event(for card view) . Different layout for each different kind of events 
 like 
 workshop(paid + non paid)
