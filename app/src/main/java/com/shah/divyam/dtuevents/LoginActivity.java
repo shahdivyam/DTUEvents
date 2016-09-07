@@ -24,6 +24,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewAnimationUtils;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
@@ -68,8 +69,10 @@ public class LoginActivity extends AppCompatActivity  {
     private View mLoginFormView;
 
     private Button btRegister;
+    private Button btLogin;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -78,11 +81,6 @@ public class LoginActivity extends AppCompatActivity  {
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-
-        // code for full screen activity
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_login);
 
@@ -94,14 +92,8 @@ public class LoginActivity extends AppCompatActivity  {
 
         // Linking register activity through register button
 
-        btRegister = (Button) findViewById(R.id.bt_email_register_button);
+        btLogin = (Button) findViewById(R.id.email_sign_in_button);
 
-        btRegister.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startRegisterActivity();
-            }
-        });
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -118,8 +110,6 @@ public class LoginActivity extends AppCompatActivity  {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
     }
 
     private void populateAutoComplete() {
@@ -176,11 +166,7 @@ public class LoginActivity extends AppCompatActivity  {
         //i.putExtra("email",email);
         startActivity(i);
     }
-    public void startRegisterActivity(){
-        Intent i = new Intent(this,RegisterActivity.class);
-        //i.putExtra("email",email);
-        startActivity(i);
-    }
+
     private void attemptLogin() {
 
         if (mAuthTask != null) {

@@ -12,10 +12,10 @@ import com.shah.divyam.dtuevents.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class profilefrag extends Fragment {
+public class societeyfrag extends Fragment {
 
 
-    public profilefrag() {
+    public societeyfrag() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,8 @@ public class profilefrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profilefrag, container, false);
+
+        return inflater.inflate(R.layout.fragment_societeyfrag, container, false);
     }
 
 }

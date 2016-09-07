@@ -29,4 +29,9 @@
         <item name="android:background">@color/black</item>
     </style>
 
+    <style name="MyStyle">
+        <item name="android:textColor">#FF255F26</item>
+
+    </style>
+
 </resources>
