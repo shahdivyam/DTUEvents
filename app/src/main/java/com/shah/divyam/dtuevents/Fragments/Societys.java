@@ -1,8 +1,10 @@
 package com.shah.divyam.dtuevents.Fragments;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by divyam on 10/9/16.
@@ -11,7 +13,7 @@ public class Societys {
 
     public  ArrayList<Society> SocietyList;
     public ArrayList<String> jsonUrlList;
-
+    public static int count = 1;
     public Societys() {
 
         SocietyList = new ArrayList<>();
@@ -24,32 +26,51 @@ public class Societys {
 
     }
 
-    public ArrayList<Society> getSocietyList(){
-        SocietyList.add(new Society("IEEE"));
-        SocietyList.add(new Society("Enactus"));
-        SocietyList.add(new Society("E-Cell"));
-        SocietyList.add(new Society("SSE"));
-        SocietyList.add(new Society("Engi Fest"));
+    public ArrayList<Society> getSocietyList() throws ExecutionException, InterruptedException {
 
-        return SocietyList;
+        if(societyfrag.isConnectedToNet()==true) {
+
+            for (int i = 0; i < jsonUrlList.size(); i++) {
+                String url = jsonUrlList.get(i);
+                Society item;
+                NetFetchTask nft = new NetFetchTask(new NetFetchTask.PostExecuteListener() {
+                    @Override
+                    public void PostExecuteDone(Society item) {
+
+                    }
+                });
+                item = nft.execute(url).get();
+                SocietyList.add(item);
+            }
+            return SocietyList;
+        }
+        else {
+            return null;
+        }
+
+
     }
 
-    public  class Society{
+    public static class Society{
+
+        public Society() {
+        }
+
         public Society(String title) {
             this.title = title;
         }
 
-        public Society(String title, String imageURL, String desc) {
+        public Society(String title, ImageView img, String desc) {
             this.title = title;
-            this.imageURL = imageURL;
+            this.image = img;
             this.desc = desc;
         }
-
+        int id;
         String title;
-        String imageURL;
+        ImageView image;
         String desc;
         int likes;
-        int bookmark;
+        int bookmarks;
     }
 
 }

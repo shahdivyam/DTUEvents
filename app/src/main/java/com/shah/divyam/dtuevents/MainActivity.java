@@ -23,6 +23,7 @@ import com.shah.divyam.dtuevents.Fragments.societyfrag;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,10 +32,10 @@ public class MainActivity extends AppCompatActivity
     ViewPager viewPager;
     TabLayout tabLayout;
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager(ViewPager viewPager) throws ExecutionException, InterruptedException {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new eventsfrag(), "Events");
-        adapter.addFragment(new societyfrag(), "SOCIETIES");
+        adapter.addFragment(new societyfrag(getApplicationContext()), "SOCIETIES");
         viewPager.setAdapter(adapter);
     }
 
@@ -50,7 +51,13 @@ public class MainActivity extends AppCompatActivity
 
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        try {
+            setupViewPager(viewPager);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
