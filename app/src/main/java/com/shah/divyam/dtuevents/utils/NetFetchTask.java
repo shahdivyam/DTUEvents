@@ -1,9 +1,11 @@
-package com.shah.divyam.dtuevents.Fragments;
+package com.shah.divyam.dtuevents.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ImageView;
+
+import com.shah.divyam.dtuevents.Fragments.Societys;
 
 import org.json.JSONException;
 import org.json.JSONObject;

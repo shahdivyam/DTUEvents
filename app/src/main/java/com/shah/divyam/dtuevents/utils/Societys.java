@@ -1,7 +1,9 @@
-package com.shah.divyam.dtuevents.Fragments;
+package com.shah.divyam.dtuevents.utils;
 
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.shah.divyam.dtuevents.Fragments.societyfrag;
+import com.shah.divyam.dtuevents.utils.NetFetchTask;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
