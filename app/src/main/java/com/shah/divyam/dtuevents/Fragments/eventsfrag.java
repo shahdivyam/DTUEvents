@@ -1,6 +1,9 @@
 package com.shah.divyam.dtuevents.Fragments;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shah.divyam.dtuevents.R;
 
@@ -24,6 +28,19 @@ public class eventsfrag extends Fragment {
     public eventsfrag() {
         // Required empty public constructor
     }
+//    public  boolean isConnectedToNet(){
+//
+//        ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+//        if(networkInfo!=null&&networkInfo.isConnected()){
+//            return true;
+//        }
+//        else{
+//            Toast.makeText(getContext(), "Please Connect to Internet", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+//    }
+
 
 
     @Override

@@ -1,8 +1,10 @@
 package com.shah.divyam.dtuevents.Fragments;
+import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.shah.divyam.dtuevents.R;
+import com.shah.divyam.dtuevents.utils.Societys;
+import com.squareup.picasso.Picasso;
+
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -25,19 +31,16 @@ public class societyfrag extends Fragment {
 
     ArrayList<Societys.Society> myList;
     RecyclerView societyList;
-    public static Context mContext;
+
 
     public societyfrag() throws ExecutionException, InterruptedException {
         // Required empty public constructor
+
         Societys societys = new Societys();
         myList = societys.getSocietyList();
+
     }
-    public societyfrag(Context mContext) throws ExecutionException, InterruptedException {
-        // Required empty public constructor
-        Societys societys = new Societys();
-        myList = societys.getSocietyList();
-        this.mContext=  mContext;
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,6 +96,7 @@ public class societyfrag extends Fragment {
         public void onBindViewHolder(SocietyViewHolder holder, int position) {
             Societys.Society entry = mList.get(position);
             holder.title.setText(entry.title);
+            Picasso.with(getContext()).load(entry.imgurl).resize(500,170).into(holder.banner);
         }
 
         @Override
@@ -101,17 +105,7 @@ public class societyfrag extends Fragment {
         }
     }
 
-    public static boolean isConnectedToNet(){
-        ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if(networkInfo!=null&&networkInfo.isConnected()==true){
-            return true;
-        }
-        else{
-            Toast.makeText(mContext, "Please Connect to Internet", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-    }
+
 
 
 }

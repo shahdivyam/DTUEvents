@@ -2,6 +2,7 @@ package com.shah.divyam.dtuevents.utils;
 
 import android.widget.ImageView;
 
+import com.shah.divyam.dtuevents.Fragments.eventsfrag;
 import com.shah.divyam.dtuevents.Fragments.societyfrag;
 import com.shah.divyam.dtuevents.utils.NetFetchTask;
 
@@ -16,9 +17,13 @@ public class Societys {
     public  ArrayList<Society> SocietyList;
     public ArrayList<String> jsonUrlList;
     public static int count = 1;
-    public Societys() {
+    eventsfrag frag;
+    public Societys() throws ExecutionException, InterruptedException {
 
         SocietyList = new ArrayList<>();
+        jsonUrlList=new ArrayList<>();
+        frag=new eventsfrag();
+
         jsonUrlList.add("https://api.myjson.com/bins/1qvaa");
         jsonUrlList.add("https://api.myjson.com/bins/3liz6");
         jsonUrlList.add("https://api.myjson.com/bins/1c2vm");
@@ -30,7 +35,8 @@ public class Societys {
 
     public ArrayList<Society> getSocietyList() throws ExecutionException, InterruptedException {
 
-        if(societyfrag.isConnectedToNet()==true) {
+
+        if( true) {
 
             for (int i = 0; i < jsonUrlList.size(); i++) {
                 String url = jsonUrlList.get(i);
@@ -58,18 +64,10 @@ public class Societys {
         public Society() {
         }
 
-        public Society(String title) {
-            this.title = title;
-        }
 
-        public Society(String title, ImageView img, String desc) {
-            this.title = title;
-            this.image = img;
-            this.desc = desc;
-        }
         int id;
-        String title;
-        ImageView image;
+       public String title;
+        public  String imgurl;
         String desc;
         int likes;
         int bookmarks;

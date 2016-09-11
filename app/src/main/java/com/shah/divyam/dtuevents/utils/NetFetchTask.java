@@ -4,8 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ImageView;
-
-import com.shah.divyam.dtuevents.Fragments.Societys;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,11 +51,13 @@ public class NetFetchTask extends AsyncTask<String,Void,Societys.Society> {
             HttpURLConnection myConnection = (HttpURLConnection) url.openConnection();
             String resp = getStringResponseFromInputStream(myConnection.getInputStream());
             item = getItemFromJsonString(resp);
+            return item;
         }
+
         catch (MalformedURLException e) {
             //e.printStackTrace();
         } catch (IOException e) {
-            //e.printStackTrace();
+
         } catch (JSONException e) {
             //e.printStackTrace();
         }
@@ -67,6 +68,7 @@ public class NetFetchTask extends AsyncTask<String,Void,Societys.Society> {
         JSONObject root = new JSONObject(resp);
         item.title = root.getString("title");
         item.desc = root.getString("Type");
+        item.imgurl=root.getString("imageUrl");
 
         return item;
     }
@@ -83,33 +85,6 @@ public class NetFetchTask extends AsyncTask<String,Void,Societys.Society> {
         return sb.toString();
     }
 
-    public class DownloadImageTask extends AsyncTask<String,Void,Bitmap>{
-        public DownloadImageTask(ImageView imgView) {
-            this.imgView = imgView;
-        }
 
-        ImageView imgView;
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            String urlOfImage = params[0];
-            Bitmap logo = null;
-            try{
-                InputStream is = new URL(urlOfImage).openStream();
-
-                logo = BitmapFactory.decodeStream(is);
-            } catch (MalformedURLException e) {
-                // e.printStackTrace();
-            } catch (IOException e) {
-                //e.printStackTrace();
-            }
-
-            return logo;
-        }
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            imgView.setImageBitmap(bitmap);
-        }
-    }
 
 }
