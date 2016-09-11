@@ -5,10 +5,12 @@
     tools:context=".Fragments.societeyfrag">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_society_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Card view for each societey ,on Click New Activity page for each societey !" />
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
 
 
 </FrameLayout>

@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/tvEventName"
-            android:text="Hello Card"
+            android:text="come on you people Boom Ba"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

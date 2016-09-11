@@ -19,7 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.shah.divyam.dtuevents.Fragments.eventsfrag;
-import com.shah.divyam.dtuevents.Fragments.societeyfrag;
+import com.shah.divyam.dtuevents.Fragments.societyfrag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new eventsfrag(), "Events");
-        adapter.addFragment(new societeyfrag(), "SOCIETIES");
+        adapter.addFragment(new societyfrag(), "SOCIETIES");
         viewPager.setAdapter(adapter);
     }
 
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPager);
 
 
-
+        // Navigation drawer code
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
