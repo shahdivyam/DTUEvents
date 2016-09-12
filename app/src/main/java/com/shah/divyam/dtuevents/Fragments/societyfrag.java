@@ -38,7 +38,6 @@ public class societyfrag extends Fragment {
 
         Societys societys = new Societys();
         myList = societys.getSocietyList();
-
     }
 
 
@@ -96,7 +95,9 @@ public class societyfrag extends Fragment {
         public void onBindViewHolder(SocietyViewHolder holder, int position) {
             Societys.Society entry = mList.get(position);
             holder.title.setText(entry.title);
-            Picasso.with(getContext()).load(entry.imgurl).resize(500,170).into(holder.banner);
+            holder.desc.setText(entry.desc);
+
+            Picasso.with(getContext()).load(entry.imgurl).resize(holder.banner.getWidth(),350).into(holder.banner);
         }
 
         @Override

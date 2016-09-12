@@ -52,6 +52,7 @@ public class Societys {
             }
             return SocietyList;
         }
+
         else {
             return null;
         }
@@ -64,11 +65,10 @@ public class Societys {
         public Society() {
         }
 
-
         int id;
-       public String title;
+        public String title;
         public  String imgurl;
-        String desc;
+        public String desc;
         int likes;
         int bookmarks;
     }

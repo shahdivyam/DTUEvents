@@ -20,6 +20,7 @@
             android:background="@color/DeepSkyBlue">
 
             <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/rv_img_soc_banner"
             android:layout_width="match_parent"
             android:layout_height="170dp"
