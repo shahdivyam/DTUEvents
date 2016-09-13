@@ -98,6 +98,8 @@ public class societyfrag extends Fragment {
             holder.desc.setText(entry.desc);
 
             Picasso.with(getContext()).load(entry.imgurl).resize(holder.banner.getWidth(),350).into(holder.banner);
+            holder.banner.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
         }
 
         @Override
