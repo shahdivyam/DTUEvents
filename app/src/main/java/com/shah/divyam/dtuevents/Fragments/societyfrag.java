@@ -1,27 +1,25 @@
 package com.shah.divyam.dtuevents.Fragments;
-import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.shah.divyam.dtuevents.R;
 import com.shah.divyam.dtuevents.utils.Societys;
 import com.squareup.picasso.Picasso;
 
-
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-
-import android.widget.ImageView;
-import android.widget.Toast;
 
 
 /**
@@ -33,12 +31,44 @@ public class societyfrag extends Fragment {
     RecyclerView societyList;
 
 
-    public societyfrag() throws ExecutionException, InterruptedException {
-        // Required empty public constructor
-
-        Societys societys = new Societys();
-        myList = societys.getSocietyList();
+    private Boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
     }
+
+    public Boolean isOnline() {
+        try {
+
+            final Process p1 = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com");
+
+            int returnVal = p1.waitFor();
+            return (returnVal == 0);
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private void showAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(R.string.dialog_message)
+                .setTitle(R.string.dialog_title);
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                getActivity().finish();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 
 
     @Override
@@ -47,18 +77,34 @@ public class societyfrag extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_societeyfrag,container,false);
         societyList = (RecyclerView) rootView.findViewById(R.id.rv_society_list);
-       if(myList!=null) {
-           SocietyAdapter mAdapter = new SocietyAdapter(myList);
-           RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
 
-           societyList.setLayoutManager(layoutManager);
-           societyList.setAdapter(mAdapter);
+        if(!isNetworkAvailable() || !isOnline())
+        {
+               showAlert();
 
-           mAdapter.notifyDataSetChanged();
+        }
+        else {
 
-           societyList.setHasFixedSize(true);
-       }
+            try {
 
+                Societys societys = new Societys();
+                myList = societys.getSocietyList();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+
+            if (myList != null) {
+                SocietyAdapter mAdapter = new SocietyAdapter(myList);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+
+                societyList.setLayoutManager(layoutManager);
+                societyList.setAdapter(mAdapter);
+
+                mAdapter.notifyDataSetChanged();
+
+                societyList.setHasFixedSize(true);
+            }
+        }
         return rootView;
     }
     public class SocietyViewHolder extends RecyclerView.ViewHolder{
