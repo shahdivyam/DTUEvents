@@ -38,18 +38,6 @@ public class eventsfrag extends Fragment {
     public eventsfrag() {
         // Required empty public constructor
     }
-//    public  boolean isConnectedToNet(){
-//
-//        ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-//        if(networkInfo!=null&&networkInfo.isConnected()){
-//            return true;
-//        }
-//        else{
-//            Toast.makeText(getContext(), "Please Connect to Internet", Toast.LENGTH_SHORT).show();
-//            return false;
-//        }
-//    }
 
 
 

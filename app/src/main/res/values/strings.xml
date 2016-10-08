@@ -31,4 +31,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_test">test</string>
     <string name="action_favorite">\"\"</string>
+    <string name="dialog_message">Coudnt connect to server,press okay to exit :)</string>
+    <string name="dialog_title">Network Timeout</string>
+    <string name="ok">okay</string>
 </resources>
