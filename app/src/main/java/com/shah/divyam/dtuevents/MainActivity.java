@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) throws ExecutionException, InterruptedException {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new eventsfrag(), "Events");
-        societyfrag sfrag=new societyfrag();
 
-        adapter.addFragment(sfrag, "SOCIETIES");
+        adapter.addFragment(new eventsfrag(), "Events");
+        adapter.addFragment(new societyfrag(), "SOCIETIES");
+
         viewPager.setAdapter(adapter);
     }
 

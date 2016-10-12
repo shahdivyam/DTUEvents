@@ -1,5 +1,6 @@
 package com.shah.divyam.dtuevents.utils;
 
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.shah.divyam.dtuevents.Fragments.eventsfrag;
@@ -16,13 +17,14 @@ public class Societys {
 
     public  ArrayList<Society> SocietyList;
     public ArrayList<String> jsonUrlList;
+    public Society item;
     public static int count = 1;
     eventsfrag frag;
     public Societys() throws ExecutionException, InterruptedException {
 
         SocietyList = new ArrayList<>();
         jsonUrlList=new ArrayList<>();
-        frag=new eventsfrag();
+        frag = new eventsfrag();
 
         jsonUrlList.add("https://api.myjson.com/bins/1qvaa");
         jsonUrlList.add("https://api.myjson.com/bins/3liz6");
@@ -39,15 +41,19 @@ public class Societys {
         if( true) {
 
             for (int i = 0; i < jsonUrlList.size(); i++) {
+
                 String url = jsonUrlList.get(i);
-                Society item;
-                NetFetchTask nft = new NetFetchTask(new NetFetchTask.PostExecuteListener() {
+                new NetFetchTask(new NetFetchTask.PostExecuteListener() {
                     @Override
-                    public void PostExecuteDone(Society item) {
+                    public void PostExecuteDone(Society Item) {
+                        item = Item;
 
                     }
-                });
-                item = nft.execute(url).get();
+                }).execute(url);
+
+                Log.d("Item"," i :"+i);
+
+
                 SocietyList.add(item);
             }
             return SocietyList;

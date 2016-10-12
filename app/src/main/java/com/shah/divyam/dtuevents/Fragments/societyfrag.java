@@ -152,7 +152,9 @@ public class societyfrag extends Fragment {
         public int getItemCount() {
             return mList.size();
         }
+
     }
+
 
 
 

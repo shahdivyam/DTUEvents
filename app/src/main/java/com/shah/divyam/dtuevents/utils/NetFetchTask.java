@@ -3,6 +3,7 @@ package com.shah.divyam.dtuevents.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,9 +27,10 @@ public class NetFetchTask extends AsyncTask<String,Void,Societys.Society> {
 
     public interface PostExecuteListener{
 
-        public void PostExecuteDone(Societys.Society item);
+         void PostExecuteDone(Societys.Society item);
 
     }
+
     public NetFetchTask(PostExecuteListener mListener) {
         super();
         this.mListener = mListener;
@@ -40,6 +42,7 @@ public class NetFetchTask extends AsyncTask<String,Void,Societys.Society> {
     protected void onPostExecute(Societys.Society society) {
         super.onPostExecute(society);
         mListener.PostExecuteDone(society);
+        Log.d("nft",society.title+" divyam");
     }
 
 
@@ -63,6 +66,7 @@ public class NetFetchTask extends AsyncTask<String,Void,Societys.Society> {
         }
         return null;
     }
+
     private Societys.Society getItemFromJsonString(String resp)throws JSONException{
         Societys.Society item = new Societys.Society();
         JSONObject root = new JSONObject(resp);
