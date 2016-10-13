@@ -203,7 +203,9 @@ public class eventsfrag extends Fragment {
         public int getItemCount() {
             return mlist.size();
         }
+
     }
+
 
 
 }
